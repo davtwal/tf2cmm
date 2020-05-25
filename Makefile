@@ -12,7 +12,7 @@ else
 	PYTHON+=python3
 endif
 
-PACKAGES=cherrypy django
+PACKAGES=cherrypy django django-admin
 
 ifneq ($(DONT_INSTALL_OPTIONAL),true)
 	PACKAGES+=requests

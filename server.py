@@ -50,6 +50,17 @@ def main():
   cherrypy.log("Grafting Django WSGI Application...")
   cherrypy.tree.graft(application)
 
+  # Cherrypy doesn't automatically subscribe this signal handler to the engine bus
+  # when using engine.start(), only when using server.quickstart() - which we aren't using -
+  # so in order to capture signals (e.g. SIGINT from Ctrl+C), subscribe the handler.
+  if hasattr(cherrypy.engine, 'signal_handler'):
+    cherrypy.engine.signal_handler.subscribe()
+
+  # HOWEVER, the event is DIFFERENT for Windows computers, which is a DIFFERENT signal.
+  # Of course. For this, we need to subscribe a win32 console ctrl handler plugin.
+  if os.name == 'nt': # e.g. Windows_NT. Nice try.
+    cherrypy.process.win32.ConsoleCtrlHandler(cherrypy.engine).subscribe()
+
   cherrypy.log("Loading engine...")
   cherrypy.engine.start()
   cherrypy.engine.block()

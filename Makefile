@@ -17,6 +17,7 @@ PACKAGES=cherrypy django
 ifneq ($(DONT_INSTALL_OPTIONAL),true)
 	PACKAGES+=requests
 endif
+
 # INSTALLED PIP MODULES
 # Cherrypy	: Web server
 # Django		: Framework
@@ -24,5 +25,6 @@ endif
 all:
 	$(PYTHON) -m pip install $(PACKAGES)
 
+# Using this will make Ctrl+C act a little weird on Windows, messing up how printing works.
 run:
 	$(PYTHON) server.py

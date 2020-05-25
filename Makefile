@@ -38,6 +38,3 @@ migrate:
 migrateall:
 	$(MAKE) migrations
 	$(MAKE) migrate
-
-ech:
-	echo $(ECHOME)

@@ -28,3 +28,16 @@ all:
 # Using this will make Ctrl+C act a little weird on Windows, messing up how printing works.
 run:
 	$(PYTHON) server.py
+
+migrations:
+	$(PYTHON) manage.py makemigrations
+
+migrate:
+	$(PYTHON) manage.py migrate
+
+migrateall:
+	$(MAKE) migrations
+	$(MAKE) migrate
+
+ech:
+	echo $(ECHOME)

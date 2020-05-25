@@ -31,7 +31,7 @@ engine_conf = {
   'log.screen': True
 }
 
-# Cherrypy 
+# Cherrypy tree configuration.
 tree_conf = {
   'tools.staticdir.on': True,
   'tools.staticdir.dir': settings.STATIC_ROOT,
@@ -57,8 +57,8 @@ def main():
     cherrypy.engine.signal_handler.subscribe()
 
   # HOWEVER, the event is DIFFERENT for Windows computers, which is a DIFFERENT signal.
-  # Of course. For this, we need to subscribe a win32 console ctrl handler plugin.
-  if os.name == 'nt': # e.g. Windows_NT. Nice try.
+  # Of course. For this, we need to subscribe to the win32 console ctrl handler plugin.
+  if os.name == 'nt':
     cherrypy.process.win32.ConsoleCtrlHandler(cherrypy.engine).subscribe()
 
   cherrypy.log("Loading engine...")

@@ -9,7 +9,7 @@ ifeq ($(OS),Windows_NT)
 	PYTHON+=py
 #linux
 else
-	PYTHON+=python
+	PYTHON+=python3
 endif
 
 PACKAGES=cherrypy django
@@ -24,5 +24,5 @@ endif
 all:
 	$(PYTHON) -m pip install $(PACKAGES)
 
-#run:
-#	$(PYTHON) server.py
+run:
+	$(PYTHON) server.py

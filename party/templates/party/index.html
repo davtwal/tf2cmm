@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <a href="{% url 'createParty' %}">Create Party</a>
+    <br>
+    {% if party_list %}
+      <ul>
+        {% for party in party_list %}
+          <li><a href="{% url 'party' party.id %}">{{ party.id }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No parties currently created</p>
+    {% endif %}
+  </body>
+</html>
